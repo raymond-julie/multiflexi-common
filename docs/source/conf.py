@@ -18,6 +18,7 @@ version = '2.3.0'
 # -- General configuration
 
 extensions = [
+    'shibuya',
     'sphinx.ext.duration',
     'sphinx.ext.doctest',
     'sphinx.ext.autodoc',
