@@ -14,10 +14,6 @@ export DB_PASSWORD = dummy
 %:
 	dh $@ --with phpcomposer
 
-override_dh_auto_build:
-	dh_auto_build
-	make docs
-
 #override_dh_auto_install:
 #       dh_auto_install -- prefix=/usr
 
