@@ -274,6 +274,15 @@ The key is:
 - Protected with permissions `640` (root:www-data)
 - Created only if it doesn't already exist in the configuration file
 
+> **Dev / non-package installs:** the automatic generation above only happens in the
+> `multiflexi-common` Debian package's `postinst` script. If you set up MultiFlexi from a
+> git checkout (e.g. running `composer install` and `phinx migrate`/`seed` directly, a
+> `.devcontainer`, or a CI pipeline) without ever installing that `.deb`, no key is
+> generated for you. `phinx seed:run -s EncryptionKeysSeeder` will then report
+> `ENCRYPTION_MASTER_KEY is not set` and leave placeholder encryption keys in the
+> `encryption_keys` table. Run the **Manual Configuration** step below yourself before
+> seeding, then re-run `phinx seed:run -s EncryptionKeysSeeder` to replace the placeholders.
+
 ### Manual Configuration
 
 To manually set or change the encryption master key, edit `/etc/multiflexi/multiflexi.env`:

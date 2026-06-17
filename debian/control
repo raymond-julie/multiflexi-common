@@ -10,7 +10,7 @@ Package: multiflexi
 Multi-Arch: foreign
 Depends: ${misc:Depends},
  multiflexi-common,
-Recommends: multiflexi-scheduler, multiflexi-web|multiflexi-web5, muliflexi-executor
+Recommends: multiflexi-scheduler, multiflexi-web|multiflexi-web5, muliflexi-executor, multiflexi-housekeeper
 Architecture: all
 Description: Run various tools on top of not even AbraFlexi and Stormware Pohoda
  Define server, customers and its companies. Then specify
