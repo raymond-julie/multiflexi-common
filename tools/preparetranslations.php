@@ -31,15 +31,15 @@ $translateFileContents .= " */\n\n";
 $translations = [];
 
 foreach (array_merge($texts, $confs) as $text) {
-    if (array_key_exists('name', $text) && array_key_exists($text['name'], $translations) === false) {
+    if (isset($text['name']) && !isset($translations[$text['name']])) {
         $translateFileContents .= "_('" . str_replace("'", "\'", $text['name']) . "');\n";
         $translations[$text['name']] = true;
     }
-    if ($text['description'] && array_key_exists($text['description'], $translations) === false) {
+    if ($text['description'] && !isset($translations[$text['description']])) {
         $translateFileContents .= "_('" . str_replace("'", "\'", $text['description']) . "');\n";
         $translations[$text['description']] = true;
     }
 }
 
 file_put_contents('../src/translations.php', $translateFileContents);
-$apper->addStatusMessage(sprintf(_('%d language strings exported'), count($translations)), 'success');
+$apper->addStatusMessage(sprintf(count($translations) === 1 ? LANG_STRING_EXPORTED_SINGULAR : LANG_STRING_EXPORTED_PLURAL, count($translations)), 'success');
