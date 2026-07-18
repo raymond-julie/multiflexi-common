@@ -19,11 +19,11 @@ function getit($id) {
     }
 }
 
-if ($argc > 1) {
-    if(is_numeric($argv[1])){
+if (count($argv) > 1) {
+    if (is_numeric($argv[1]) === true){
         getit($argv[1]);
     } else {
-       $path = explode('/', parse_url($argv[1],  PHP_URL_PATH));
+       $path = explode('/', parse_url($argv[1], PHP_URL_PATH));
        switch ($path[1]) {
            case 'image':
                getit($path[3]);
