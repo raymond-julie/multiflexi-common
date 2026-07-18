@@ -30,7 +30,7 @@ try {
     
     // Check user_deletion_requests table
     $stmt = $pdo->query("DESCRIBE user_deletion_requests");
-    if ($stmt->rowCount() > 0) {
+    if ($stmt->rowCount() !== 0) {
         $validationResults['deletion_requests_table'] = '✅ user_deletion_requests table exists';
         
         // Check required columns
@@ -84,7 +84,7 @@ echo "\n2. Class Implementation Validation\n";
 echo "-----------------------------------\n";
 
 // Check UserDataEraser class
-if (class_exists(UserDataEraser::class)) {
+if (class_exists(UserDataEraser::class) !== false) {
     $validationResults['user_data_eraser_class'] = '✅ UserDataEraser class exists';
     
     // Check required methods
@@ -98,7 +98,7 @@ if (class_exists(UserDataEraser::class)) {
     ];
     
     foreach ($requiredMethods as $method) {
-        if (method_exists(UserDataEraser::class, $method)) {
+        if (method_exists(UserDataEraser::class, $method) !== false) {
             $validationResults["method_{$method}"] = "✅ Method '{$method}' exists";
         } else {
             $validationResults["method_{$method}"] = "❌ Method '{$method}' missing";
@@ -129,7 +129,7 @@ echo "\n3. CLI Implementation Validation\n";
 echo "---------------------------------\n";
 
 $cliCommandPath = '/home/vitex/Projects/Multi/multiflexi-cli/src/Command/UserDataErasureCommand.php';
-if (file_exists($cliCommandPath)) {
+if (file_exists($cliCommandPath) !== false) {
     $validationResults['cli_command'] = '✅ CLI command exists';
 } else {
     $validationResults['cli_command'] = '❌ CLI command missing';
@@ -146,7 +146,7 @@ $uiComponents = [
 ];
 
 foreach ($uiComponents as $component => $path) {
-    if (file_exists($path)) {
+    if (file_exists($path) !== false) {
         $validationResults["ui_{$component}"] = "✅ {$component} exists";
     } else {
         $validationResults["ui_{$component}"] = "❌ {$component} missing";
